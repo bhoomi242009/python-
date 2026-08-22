@@ -80,9 +80,7 @@ def animate_items(items_to_animate):
         duration = START_SPEED - current_level
         item.anchor = ("center", "bottom")
 
-        animation = animate()
-
-        (item, duration == duration, on_finished == handle_game_over, y == HEIGHT)
+        animation = animate(item, duration = duration, on_finished = handle_game_over, y = HEIGHT)
 
         animations.append(animation)
 
