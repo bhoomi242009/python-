@@ -8,7 +8,7 @@ rocketx = 350
 rockety = 400
 rocket = pygame.image.load("images/rocket.png") #rocket loading onto the screen
 background = pygame.image.load("images/background_space.png")
-keys = [False, False, False, False] #up, left, down, right
+keys = [False, False, False, False, False] #up, left, down, right, right shift key
 #Right now all keys are false, but will be true when key is pressed
 
 while rockety < 600:
@@ -32,6 +32,8 @@ while rockety < 600:
                 keys[2] = True
             if event.key == K_RIGHT:
                 keys[3] = True
+            if event.key == K_RSHIFT:
+                keys[4] = True
 
         if event.type == pygame.KEYUP:
             #check which button is released
@@ -41,22 +43,29 @@ while rockety < 600:
                 keys[1] = False
             elif event.key == K_DOWN:
                 keys[2] = False
-            if event.key == K_RIGHT:
+            elif event.key == K_RIGHT:
                 keys[3] = False
+            elif event.key == K_RSHIFT:
+                keys[4] = False
+
+    speed = 10 if keys[4] else 5
+
             
         #based on which key is true/ false, we decide how much it will move
     if keys[0]:
         if rockety > 0:
-            rockety -= 5 #rockety = rockety - 5
+            rockety -= speed
     elif keys[1]:
         if rocketx > 0:
-            rocketx -= 5
+            rocketx -= speed
     elif keys[2]:
         if rockety < 550:
-            rockety += 5
+            rockety += speed
     elif keys[3]:
         if rocketx < 750:
-            rocketx += 5
+            rocketx += speed
+    
+
 
         #rockety += 5
     sleep(0.05)
